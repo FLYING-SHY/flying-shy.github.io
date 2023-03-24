@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Vue3.0项目搭建 | 阿华</title><meta name="author" content="HUA"><meta name="copyright" content="HUA"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta name="description" content="vue3.0项目的搭建[官网地址]: https:&#x2F;&#x2F;cli.vuejs.org&#x2F;zh&#x2F;	“官网地址”  在要创建项目的文件夹下边同时按shift键与鼠标右键，选择在此处打开powershell窗口  卸载之前的vue版本 npm uninstall vue-cli -g    全局安装脚手架 npm install -g @vue&#x2F;cli    查看版本号（大写V） vue -V    在命令行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue3.0项目搭建">
+<meta property="og:url" content="http://example.com/2020/12/10/Vue3-0%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="阿华">
+<meta property="og:description" content="vue3.0项目的搭建[官网地址]: https:&#x2F;&#x2F;cli.vuejs.org&#x2F;zh&#x2F;	“官网地址”  在要创建项目的文件夹下边同时按shift键与鼠标右键，选择在此处打开powershell窗口  卸载之前的vue版本 npm uninstall vue-cli -g    全局安装脚手架 npm install -g @vue&#x2F;cli    查看版本号（大写V） vue -V    在命令行">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/page6.jpg">
+<meta property="article:published_time" content="2020-12-10T02:11:56.000Z">
+<meta property="article:modified_time" content="2023-03-24T02:00:48.928Z">
+<meta property="article:author" content="HUA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/page6.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/12/10/Vue3-0%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Vue3.0项目搭建',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-24 10:00:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-clock/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">阿华</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Vue3.0项目搭建</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-10T02:11:56.000Z" title="发表于 2020-12-10 10:11:56">2020-12-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-24T02:00:48.928Z" title="更新于 2023-03-24 10:00:48">2023-03-24</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">668</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Vue3.0项目搭建"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="vue3-0项目的搭建"><a href="#vue3-0项目的搭建" class="headerlink" title="vue3.0项目的搭建"></a>vue3.0项目的搭建</h1><p>[官网地址]: <a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/">https://cli.vuejs.org/zh/</a>	“官网地址”</p>
+<ol>
+<li><p>在要创建项目的文件夹下边同时按shift键与鼠标右键，选择在此处打开powershell窗口</p>
+</li>
+<li><p>卸载之前的vue版本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm uninstall vue-cli -g</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>全局安装脚手架</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>查看版本号（大写V）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vue -V</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>在<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%91%BD%E4%BB%A4%E8%A1%8C&spm=1001.2101.3001.7020">命令行</a>安装pnpm@6的版本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i pnpm@6 -g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>搭建一个项目名称为project的项目</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vue create project</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>根据项目提示进行相应的配置，选择最后一项为手动配置</p>
+<blockquote>
+<p>Default ([Vue 3] babel, eslint)：默认预设配置，会快速创建一个Vue3.0项目，提供了babel和eslint支持</p>
+<p>Default ([Vue 2] babel, eslint)：默认预设配置，会快速创建一个Vue2.0项目，提供了babel和eslint支持</p>
+<p>Manually select features：手动配置项目，可根据项目的需要选择合适的选项，具备更多的选择性</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="/2020/12/10/Vue3-0%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/1659576763626.png" alt="1659576763626"></p>
+</li>
+<li><p>移动上下箭头选择要配置的东西，按空格键表示选中（括号内会出现星标）</p>
+<blockquote>
+<p>Babel：使用Babel将源码进行转码（把ES6&#x3D;&gt;ES5）<br>TypeScript：使用TypeScript进行源码编写。使用TypeScript可以编写强类型JavaScript<br>Progressive Web App (PWA) Support：使用渐进式Web应用程序<br>Router：使用Vue路由<br>Vuex：使用Vuex状态管理器<br>CSS Pre-processors：CSS 预处理器（如：less、sass）<br>Linter &#x2F; Formatter：使用代码风格检查和格式化（如：ESlint）<br>Unit Testing：使用单元测试（unit tests）<br>E2E Testing：使用E2E（end to end）黑盒测试</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="/2020/12/10/Vue3-0%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/1659576799892.png" alt="1659576799892"></p>
+</li>
+<li><p>全部选好之后按回车键开始进行相应的配置</p>
+<ul>
+<li><p>选择Vue的版本为3.0        </p>
+<p><img src="/img/loading.gif" data-original="/2020/12/10/Vue3-0%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/1659576843879.png" alt="1659576843879"></p>
+</li>
+<li><p>选择路由采用历史模式</p>
+<p><img src="/img/loading.gif" data-original="/2020/12/10/Vue3-0%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/1659576897375.png" alt="1659576897375"></p>
+</li>
+<li><p>选择css预处理器的语言：主要为css解决浏览器兼容、简化CSS代码等</p>
+<p><img src="/img/loading.gif" data-original="/2020/12/10/Vue3-0%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/1659576936048.png" alt="1659576936048"></p>
+</li>
+<li><p>选择Eslint代码规范（javascript代码检测工具）    </p>
+<blockquote>
+<p>  TSLint: ts格式检验⼯具<br>  ESLint with error prevention only: ESLint 只会进⾏错误提醒<br>  ESLint + Airbnb config: ESLint Airbnb标准<br>  ESLint + Standard config: ESLint Standard 标准<br>  ESLint + Prettier: ESLint（代码质量检测）+ Prettier（代码格式化⼯具）</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="/2020/12/10/Vue3-0%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/1659576969476.png" alt="1659576969476"></p>
+</li>
+<li><p>选择何时检测</p>
+<blockquote>
+<p>代码检查⽅式: 保存时检查 &#x2F; 提交时检查;  我一般习惯保存时检查</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="/2020/12/10/Vue3-0%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/1659577006352.png" alt="1659577006352"></p>
+</li>
+<li><p>选择单元测试的解决方案</p>
+<p><img src="/img/loading.gif" data-original="/2020/12/10/Vue3-0%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/1659577042741.png" alt="1659577042741"></p>
+</li>
+<li><p>选择配置文件存放的位置</p>
+<p><img src="/img/loading.gif" data-original="/2020/12/10/Vue3-0%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/1659577071182.png" alt="1659577071182"></p>
+</li>
+<li><p>是否保存当前配置作为下次创建项目的模板（我选择y，选择n则不用起名）</p>
+<p><img src="/img/loading.gif" data-original="/2020/12/10/Vue3-0%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/1659577110448.png" alt="1659577110448"></p>
+</li>
+</ul>
+</li>
+<li><p>选择配置文件存放的位置（我选择单独保存在各自的配置文件中）</p>
+</li>
+<li><p>是否保存当前配置作为下次创建项目的模板（我选择y，选择n则不用起名）</p>
+</li>
+<li><p>搭建完成，根据提示进入文件夹</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd competition_qt</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>启动项目</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run serve</span><br></pre></td></tr></table></figure></li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">HUA</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/12/10/Vue3-0%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/">http://example.com/2020/12/10/Vue3-0项目搭建/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">阿华</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/page6.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/04/13/MyBatis-Plus/"><img class="prev-cover" src="/img/loading.gif" data-original="/img/page4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MyBatis-Plus</div></div></a></div><div class="next-post pull-right"><a href="/2020/12/06/vue2.0/"><img class="next-cover" src="/img/loading.gif" data-original="/img/page5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Vue2</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">HUA</div><div class="author-info__description">不要放弃</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/TINGTING-GIT" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="tencent://AddContact/?fromld=45&amp;fromSubld=1&amp;subcmd=all&amp;uin=2164277973&amp;website=www.oicqzone.com" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:2164277973@qq.com" target="_blank" title="Email"><i class="fas fa-envelope-open-text"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div><div class="xpand" style="height:200px;"><canvas class="illo" width="800" height="800" style="max-width: 200px; max-height: 200px; touch-action: none; width: 640px; height: 640px;"></canvas></div></div><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vue3-0%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">vue3.0项目的搭建</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/01/17/Nginx/" title="Nginx"><img src="/img/loading.gif" data-original="/img/page3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx"/></a><div class="content"><a class="title" href="/2023/01/17/Nginx/" title="Nginx">Nginx</a><time datetime="2023-01-17T05:14:35.000Z" title="发表于 2023-01-17 13:14:35">2023-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/13/SpringCloud/" title="SpringCloud"><img src="/img/loading.gif" data-original="/img/page6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringCloud"/></a><div class="content"><a class="title" href="/2022/11/13/SpringCloud/" title="SpringCloud">SpringCloud</a><time datetime="2022-11-13T06:27:18.000Z" title="发表于 2022-11-13 14:27:18">2022-11-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/06/Docker/" title="Docker"><img src="/img/loading.gif" data-original="/img/page3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Docker"/></a><div class="content"><a class="title" href="/2022/09/06/Docker/" title="Docker">Docker</a><time datetime="2022-09-06T02:11:56.000Z" title="发表于 2022-09-06 10:11:56">2022-09-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/20/Dubbo/" title="Dubbo"><img src="/img/loading.gif" data-original="/img/page2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Dubbo"/></a><div class="content"><a class="title" href="/2022/07/20/Dubbo/" title="Dubbo">Dubbo</a><time datetime="2022-07-20T11:38:20.000Z" title="发表于 2022-07-20 19:38:20">2022-07-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/22/Netty/" title="Netty"><img src="/img/loading.gif" data-original="/img/page5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Netty"/></a><div class="content"><a class="title" href="/2022/05/22/Netty/" title="Netty">Netty</a><time datetime="2022-05-22T05:59:16.000Z" title="发表于 2022-05-22 13:59:16">2022-05-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By HUA</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script async src="https://npm.elemecdn.com/tzy-blog/lib/js/other/sakura.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/tzy13755126023/BLOG_SOURCE/theme_f/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_injector_config();
+  }
+  </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax src="https://unpkg.zhimg.com/hexo-butterfly-clock/lib/clock.min.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":20,"vOffset":-20},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(e){e.imageLazyLoadSetting.processImages=t;var n=e.imageLazyLoadSetting.isSPA,i=e.imageLazyLoadSetting.preloadRatio||1,r=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){n&&(r=o());for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(e.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];e=function(){r=r.filter(function(t){return o!==t})},(t=o).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,t.removeAttribute("data-original"),e&&e()},t.src!==i&&(n.src=i))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),e.addEventListener("resize",a),e.addEventListener("orientationchange",a)}(this);</script></body></html>
