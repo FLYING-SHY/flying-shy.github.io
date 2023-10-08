@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>硅谷课堂-腾讯云部署 | 阿华</title><meta name="author" content="HUA"><meta name="copyright" content="HUA"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="no-referrer"><meta name="description" content="一、项目部署方案1、原始部署方式 2、整合Jenkins 完整DevOps示例如下：   3、整合CODING 整合CODING实现DevOps  https:&#x2F;&#x2F;console.cloud.tencent.com&#x2F;coding&#x2F;container-devops  二、腾讯云CODING DevOps概述腾讯云使用文档： https:&#x2F;&#x2F;help.coding.net&#x2F;docs&#x2F;start&#x2F;new">
+<meta property="og:type" content="article">
+<meta property="og:title" content="硅谷课堂-腾讯云部署">
+<meta property="og:url" content="http://example.com/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:site_name" content="阿华">
+<meta property="og:description" content="一、项目部署方案1、原始部署方式 2、整合Jenkins 完整DevOps示例如下：   3、整合CODING 整合CODING实现DevOps  https:&#x2F;&#x2F;console.cloud.tencent.com&#x2F;coding&#x2F;container-devops  二、腾讯云CODING DevOps概述腾讯云使用文档： https:&#x2F;&#x2F;help.coding.net&#x2F;docs&#x2F;start&#x2F;new">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/page5.jpg">
+<meta property="article:published_time" content="2023-09-24T08:56:09.000Z">
+<meta property="article:modified_time" content="2023-09-24T08:56:51.954Z">
+<meta property="article:author" content="HUA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/page5.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '硅谷课堂-腾讯云部署',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-24 16:56:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://unpkg.zhimg.com/hexo-butterfly-clock/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">阿华</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/shuoshuo/"><i class="fa-fw fa fa-comments"></i><span> 分享</span></a></li><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">硅谷课堂-腾讯云部署</h1><div id="post-meta"><div class="meta-firstline"></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="硅谷课堂-腾讯云部署"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h3 id="一、项目部署方案"><a href="#一、项目部署方案" class="headerlink" title="一、项目部署方案"></a>一、项目部署方案</h3><h4 id="1、原始部署方式"><a href="#1、原始部署方式" class="headerlink" title="1、原始部署方式"></a>1、原始部署方式</h4><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220519141648705.png" alt="image-20220519141648705"></p>
+<h4 id="2、整合Jenkins"><a href="#2、整合Jenkins" class="headerlink" title="2、整合Jenkins"></a>2、整合Jenkins</h4><blockquote>
+<p><strong>完整DevOps示例如下：</strong></p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/dev-ops.png" alt="dev-ops"></p>
+<h4 id="3、整合CODING"><a href="#3、整合CODING" class="headerlink" title="3、整合CODING"></a>3、整合CODING</h4><blockquote>
+<p><strong>整合CODING实现DevOps</strong></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/coding/container-devops">https://console.cloud.tencent.com/coding/container-devops</a></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/process.svg" alt="img"></p>
+<h3 id="二、腾讯云CODING-DevOps概述"><a href="#二、腾讯云CODING-DevOps概述" class="headerlink" title="二、腾讯云CODING DevOps概述"></a>二、腾讯云CODING DevOps概述</h3><p><strong>腾讯云使用文档：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://help.coding.net/docs/start/new.html">https://help.coding.net/docs/start/new.html</a></p>
+<h4 id="1、产品简介"><a href="#1、产品简介" class="headerlink" title="1、产品简介"></a>1、产品简介</h4><p>DevOps 是 Development 和 Operations 的组合词，代表着重视「软件开发人员(Dev)」和「IT 运维技术人员(Ops)」之间沟通合作的文化；旨在透过自动化「软件交付」和「架构变更」的流程，使得构建、 测试、发布软件的过程能够更加地快捷、频繁和可靠。Gartner 咨询公司认为 DevOps 代表了 IT 文化的变化趋势。</p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/20211214105628.png" alt="img"></p>
+<h5 id="1-1、CODING-DevOps-是什么"><a href="#1-1、CODING-DevOps-是什么" class="headerlink" title="1.1、CODING DevOps 是什么"></a>1.1、CODING DevOps 是什么</h5><p>CODING DevOps 是面向软件研发团队的一站式研发协作管理平台，提供从需求到设计、开发、构建、测试、发布到部署的全流程协同及研发工具支撑。CODING 解决方案可助力企业实现代码的统一安全管控，并快速实践敏捷开发与 DevOps，提升软件交付质量与速度，降低企业研发成本，实现研发效能升级。</p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/20210727110654.png" alt="img"></p>
+<h5 id="1-2、CODING-DevOps-优势"><a href="#1-2、CODING-DevOps-优势" class="headerlink" title="1.2、CODING DevOps 优势"></a>1.2、CODING DevOps 优势</h5><ul>
+<li><p><strong>一站式协作平台及研发工具链，提升研发效能</strong></p>
+<p>CODING 与云端优势相结合，依托业界敏捷项目管理与 DevOps 体系方法融入到产品中，打通研发过程中的工具链孤岛及协作壁垒，覆盖敏捷开发全生命周期，帮助团队实现需求、迭代、开发、测试、持续集成、持续部署全方位研发管理，提升软件研发效能。</p>
+</li>
+<li><p><strong>支持双态研发体系建设，满足多样化业务需求</strong></p>
+<p>CODING 适用于不同规模的开发团队以及不同类型的软件开发模式（如瀑布模型、敏捷模型），满足多业务场景的协作需求。</p>
+</li>
+<li><p><strong>项目工作流和度量数据可视化，项目管理更轻松</strong></p>
+<p>CODING 提供可视化看板，支持对代码、项目进度、人员工作量等不同维度输出详尽的数据报告，为团队管理者提供决策依据，调整项目计划和合理安排研发人力。</p>
+</li>
+<li><p><strong>丰富的扩展能力，无缝集成第三方平台</strong></p>
+<p>CODING 支持无缝集成 GitHub、GitLab 等第三方代码库及各类常见的运维系统和云原生环境，让用户实现跨平台的无缝迁移。</p>
+</li>
+</ul>
+<h5 id="1-3、CODING-DevOps-功能特性"><a href="#1-3、CODING-DevOps-功能特性" class="headerlink" title="1.3、CODING DevOps 功能特性"></a>1.3、CODING DevOps 功能特性</h5><p>CODING DevOps 平台主要提供以下功能特性：</p>
+<p><strong>团队级功能：</strong></p>
+<ul>
+<li>团队管理：团队管理员通过可视化的<a target="_blank" rel="noopener" href="https://help.coding.net/docs/dashboard/use.html">仪表盘</a>可以快速掌握团队成员工作数据、监控项目运行状态；通过<a target="_blank" rel="noopener" href="https://help.coding.net/docs/okr/okr.html">团队目标</a>助力团队成员聚焦组织目标，全方位协同执行，凝聚团队战斗力，让战略坚实落地；利用<a target="_blank" rel="noopener" href="https://help.coding.net/docs/workload/intro.html">工作负载</a>统一查看对比成员的工作量和工作安排；利用<a target="_blank" rel="noopener" href="https://help.coding.net/docs/metric/intro.html">研发度量</a>统计并分析团队成员在一段时间内的事项分布、事项概览、代码分布等数据，度量团队成员在周期内完成工作量与工作动态。</li>
+</ul>
+<p><strong>项目级功能：</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://help.coding.net/docs/collaboration/intro.html">项目协同</a>：软件开发团队可自由选择适合的研发管理模式，支持多项目管理、敏捷迭代管理、需求管理、缺陷跟踪、多维度报表数据等功能。</li>
+<li><a target="_blank" rel="noopener" href="https://help.coding.net/docs/collaboration/intro.html">代码仓库</a>：提供企业级的 Git&#x2F;SVN 代码管理服务，支持精细化权限管控、多分支并行开发、多版本管理等功能。</li>
+<li><a target="_blank" rel="noopener" href="https://help.coding.net/docs/code-scan/intro.html">代码扫描</a>：提供针对不同编程语言的代码扫描方案，支持对扫描规则、度量规则等进行自定义配置。根据代码扫描测试结果，开发人员可及时发现代码缺陷并作出修正，有效管控代码质量。</li>
+<li><a target="_blank" rel="noopener" href="https://help.coding.net/docs/ci/intro.html">持续集成</a>：提供基于云端的自动化代码构建、测试、分析和部署工作流服务，支持通过模板快速创建构建任务并进行可视化编排，极大提高软件开发团队的构建效率。</li>
+<li><a target="_blank" rel="noopener" href="https://help.coding.net/docs/cd/overview.html">持续部署</a>：提供全自动化软件部署，可持续、可控地把软件制品在线发布到服务集群中，支持蓝绿分发布、灰度发布（金丝雀发布）等多种发布策略。</li>
+<li><a target="_blank" rel="noopener" href="https://help.coding.net/docs/artifacts/intro.html">制品管理</a>：提供云端构建产物管理服务，支持云端构建和本地构建推送，可快速索引存档构建物、进行版本控制。</li>
+<li><a target="_blank" rel="noopener" href="https://help.coding.net/docs/test-management/start.html">测试管理</a>：提供面向敏捷团队的测试一站式云端测试平台，支持可视化的测试规划和多维度的测试报告，满足敏捷团队对测试过程的多样化需求。</li>
+<li><a target="_blank" rel="noopener" href="https://help.coding.net/docs/document/wiki.html">文档管理</a>：提供灵活易用的文档管理服务，可用于记录整个项目的来龙去脉，展示当前项目状态，也可让项目成员更好地进行文档书写及协作。</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/20220324104623.png" alt="img"></p>
+<h4 id="2、使用流程概述"><a href="#2、使用流程概述" class="headerlink" title="2、使用流程概述"></a>2、使用流程概述</h4><p>以下流程图展示了 CODING DevOps 软件开发平台的基本操作流程，您可以按照实际需求有选择性阅读。</p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/20220324104427.png" alt="img"></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513083630592.png" alt="image-20220513083630592"></p>
+<h5 id="2-1-创建或加入团队"><a href="#2-1-创建或加入团队" class="headerlink" title="2.1. 创建或加入团队"></a>2.1. 创建或加入团队</h5><p>如要开始使用 CODING DevOps，您需要先注册创建或接受邀请后加入一个团队。</p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/20210830110514.png" alt="img"></p>
+<h5 id="2-2-新建项目"><a href="#2-2-新建项目" class="headerlink" title="2.2. 新建项目"></a>2.2. 新建项目</h5><p>加入团队之后，您可以在团队内创建项目或受他人邀请加入别的项目。“项目”是核心单元，几乎大部分工作都需要在项目中展开。</p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/20210729102948.png" alt="img"></p>
+<h5 id="2-3-开始项目协同"><a href="#2-3-开始项目协同" class="headerlink" title="2.3. 开始项目协同"></a>2.3. 开始项目协同</h5><p>项目创建之后，项目经理、开发、测试等不同的项目角色可通过项目协同实现简单高效的项目协作，包含迭代管理、需求管理、任务管理等。</p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/20210615104232.png" alt="img"></p>
+<h5 id="2-4-使用代码仓库"><a href="#2-4-使用代码仓库" class="headerlink" title="2.4. 使用代码仓库"></a>2.4. 使用代码仓库</h5><p>完成项目规划之后，可利用代码仓库管理项目代码。该功能提供企业级的基于 Git 的云端代码管理服务，支持精细化权限管控、多分支并行开发、多版本管理等功能。</p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/20210729160941.png" alt="img"></p>
+<h5 id="2-5-启动代码扫描"><a href="#2-5-启动代码扫描" class="headerlink" title="2.5. 启动代码扫描"></a>2.5. 启动代码扫描</h5><p>对于使用 CODING 代码仓库管理的代码，开发者可使用代码扫描功能进行代码检查，以便及时发现代码缺陷并作出修正，有效管控代码质量。</p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/20210729182124.png" alt="img"></p>
+<h5 id="2-6-编译构建"><a href="#2-6-编译构建" class="headerlink" title="2.6. 编译构建"></a>2.6. 编译构建</h5><p>项目代码开发完成之后，可通过持续集成功能快速创建构建任务，将项目代码编译打包成软件包。</p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/20210730105117.png" alt="img"></p>
+<h5 id="2-7-管理制品"><a href="#2-7-管理制品" class="headerlink" title="2.7. 管理制品"></a>2.7. 管理制品</h5><p>在您将项目代码构建好之后，可以使用制品管理功能管理构建产物。CODING 支持多种制品库类型，包括 Docker、Maven、Helm 和 npm。</p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/20210730144527.png" alt="img"></p>
+<h5 id="2-8-实施持续部署"><a href="#2-8-实施持续部署" class="headerlink" title="2.8. 实施持续部署"></a>2.8. 实施持续部署</h5><p>当您的项目代码已经完成构建，可使用持续部署把控构建之后的项目发布与部署到生产环境中去。</p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/20210727195619.png" alt="img"></p>
+<h5 id="2-9-管理测试用例"><a href="#2-9-管理测试用例" class="headerlink" title="2.9. 管理测试用例"></a>2.9. 管理测试用例</h5><p>当您在 CODING 平台创建项目之后，您可以使用面向敏捷团队的测试管理功能来管理项目内的测试活动，确保产品的高质量交付。</p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/20210729185213.png" alt="img"></p>
+<h5 id="2-10-管理项目文档"><a href="#2-10-管理项目文档" class="headerlink" title="2.10. 管理项目文档"></a>2.10. 管理项目文档</h5><p>在项目进行中，必然会产生大量的信息，并且需要对这些信息进行记录、传递、分享。文档管理功能提供灵活易用的文档管理服务，可用于记录整个项目的来龙去脉。</p>
+<h3 id="三、开通CODING-DevOps"><a href="#三、开通CODING-DevOps" class="headerlink" title="三、开通CODING DevOps"></a>三、开通CODING DevOps</h3><h4 id="1、搜索CODING-DevOps"><a href="#1、搜索CODING-DevOps" class="headerlink" title="1、搜索CODING DevOps"></a>1、搜索CODING DevOps</h4><p><strong>（1）腾讯云搜索CODING-DevOps</strong></p>
+<p><img src="/img/loading.gif" data-original="/../../../../../images/image-20220513083835475.png" alt="image-20220513083835475"></p>
+<p><strong>（2）进入界面</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513083952934.png" alt="image-20220513083952934"></p>
+<h4 id="2、开通账号"><a href="#2、开通账号" class="headerlink" title="2、开通账号"></a>2、开通账号</h4><p>（<strong>1）第一次进入没有账号，去开通</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220512093705420.png" alt="image-20220512093705420"></p>
+<p><strong>（2）产品授权</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220512093745784.png" alt="image-20220512093745784"></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220512093833533.png" alt="image-20220512093833533"></p>
+<p><strong>（3）输入信息，邮箱验证</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220512093956052.png" alt="image-20220512093956052"></p>
+<h4 id="3、创建团队"><a href="#3、创建团队" class="headerlink" title="3、创建团队"></a>3、创建团队</h4><p><strong>（1）输入团队名称提交</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220512094448110.png" alt="image-20220512094448110"></p>
+<p><strong>（2）开通成功</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220512094512184.png" alt="image-20220512094512184"></p>
+<p><strong>（3）点击立即使用，进入</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220512094641467.png" alt="image-20220512094641467"></p>
+<p><strong>（4）进入工作台</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513084901541.png" alt="image-20220513084901541"></p>
+<h3 id="四、使用CODING-DevOps"><a href="#四、使用CODING-DevOps" class="headerlink" title="四、使用CODING DevOps"></a>四、使用CODING DevOps</h3><h4 id="1、创建项目"><a href="#1、创建项目" class="headerlink" title="1、创建项目"></a>1、创建项目</h4><p>在 CODING DevOps 平台建立团队之后，团队内成员可按需创建项目。只有项目创建之后，项目成员才能按需使用<strong>项目协同</strong>、<strong>代码仓库</strong>、<strong>持续集成</strong>、<strong>持续部署</strong>等功能。</p>
+<h5 id="1-1、点击创建项目"><a href="#1-1、点击创建项目" class="headerlink" title="1.1、点击创建项目"></a>1.1、点击创建项目</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513085442205.png" alt="image-20220513085442205"></p>
+<h5 id="1-2、选择项目模板"><a href="#1-2、选择项目模板" class="headerlink" title="1.2、选择项目模板"></a>1.2、选择项目模板</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220401161548172.png" alt="image-20220401161548172"></p>
+<h5 id="1-3、填写项目基本信息"><a href="#1-3、填写项目基本信息" class="headerlink" title="1.3、填写项目基本信息"></a>1.3、填写项目基本信息</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513085759561.png" alt="image-20220513085759561"></p>
+<h5 id="1-4、完成创建"><a href="#1-4、完成创建" class="headerlink" title="1.4、完成创建"></a>1.4、完成创建</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513085905120.png" alt="image-20220513085905120"></p>
+<h4 id="2、项目协同"><a href="#2、项目协同" class="headerlink" title="2、项目协同"></a>2、项目协同</h4><h5 id="2-1、项目协同初始化"><a href="#2-1、项目协同初始化" class="headerlink" title="2.1、项目协同初始化"></a>2.1、项目协同初始化</h5><p><strong>（1）前往初始化</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513090127515.png" alt="image-20220513090127515"></p>
+<p><strong>（2）配置并开启项目协同</strong></p>
+<p><strong>选择经典项目管理</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220401170346140.png" alt="image-20220401170346140"></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513090438935.png" alt="image-20220513090438935"></p>
+<h5 id="2-2、项目协同具体实现"><a href="#2-2、项目协同具体实现" class="headerlink" title="2.2、项目协同具体实现"></a>2.2、项目协同具体实现</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220606141631189.png" alt="image-20220606141631189"></p>
+<p><strong>（1）点击右上角创建迭代</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513090619536.png" alt="image-20220513090619536"></p>
+<p><strong>（2）填写迭代信息</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513090809560.png" alt="image-20220513090809560"></p>
+<p><strong>（3）点击创建并规划，创建需求</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220401170830938.png" alt="image-20220401170830938"></p>
+<p><strong>（4）点击查看详情</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513091511060.png" alt="image-20220513091511060"></p>
+<p><strong>（5）设置迭代详情信息</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513091610533.png" alt="image-20220513091610533"></p>
+<p><strong>（6）效果</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513091905459.png" alt="image-20220513091905459"></p>
+<h4 id="3、代码仓库"><a href="#3、代码仓库" class="headerlink" title="3、代码仓库"></a>3、代码仓库</h4><h5 id="3-1、添加仓库"><a href="#3-1、添加仓库" class="headerlink" title="3.1、添加仓库"></a>3.1、添加仓库</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220401172546839.png" alt="image-20220401172546839"></p>
+<p><strong>（1）填写仓库信息</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513104642347.png" alt="image-20220513104642347"></p>
+<hr>
+<p><strong>（2）克隆仓库</strong></p>
+<p><strong>点击克隆</strong></p>
+<p><img src="/img/loading.gif" data-original="/../../../../../BaiduNetdiskDownload/%25E7%25A1%2585%25E8%25B0%25B7%25E8%25AF%25BE%25E5%25A0%2582/images/image-20220401172943428.png" alt="image-20220401172943428"></p>
+<h5 id="3-2、克隆代码仓库到本地"><a href="#3-2、克隆代码仓库到本地" class="headerlink" title="3.2、克隆代码仓库到本地"></a>3.2、克隆代码仓库到本地</h5><p><strong>（1）在 Git 客户端中输入克隆命令</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone &lt;您克隆的代码仓库地址&gt;</span><br></pre></td></tr></table></figure>
+
+<p>首次拉取后会提示填写凭据，此处填写在注册 CODING 时所使用的邮箱与密码即可</p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513105122191.png" alt="image-20220513105122191"></p>
+<p>命令操作提示成功之后，你可以在本地代码仓库中进行代码修改。</p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513105158588.png" alt="image-20220513105158588"></p>
+<h5 id="3-3、推送本地代码至CODING仓库"><a href="#3-3、推送本地代码至CODING仓库" class="headerlink" title="3.3、推送本地代码至CODING仓库"></a>3.3、推送本地代码至CODING仓库</h5><p>（<strong>1）在 Git 客户端，运行以下三条命令将代码推送到 CODING 平台上的代码仓库</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;&lt;您对本次提交备注的信息&gt;&quot;</span><br><span class="line">git push git仓库地址</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）创建提交文件</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513105845841.png" alt="image-20220513105845841"></p>
+<p><strong>（3）进入cmd窗口执行</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513105813690.png" alt="image-20220513105813690"></p>
+<p><strong>（4）查看所有的提交记录</strong><br><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513105725642.png" alt="image-20220513105725642"></p>
+<h5 id="3-4、推送项目到代码仓库"><a href="#3-4、推送项目到代码仓库" class="headerlink" title="3.4、推送项目到代码仓库"></a>3.4、推送项目到代码仓库</h5><p><strong>（1）复制两个文件到项目目录</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513110139408.png" alt="image-20220513110139408"></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513110345995.png" alt="image-20220513110345995"></p>
+<p><strong>（2）项目路径cmd窗口执行</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513110433190.png" alt="image-20220513110433190"></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513110604992.png" alt="image-20220513110604992"></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513110534740.png" alt="image-20220513110534740"></p>
+<p><strong>（3）查看效果</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513110713394.png" alt="image-20220513110713394"></p>
+<h4 id="4、持续集成"><a href="#4、持续集成" class="headerlink" title="4、持续集成"></a>4、持续集成</h4><h5 id="4-1、创建构建计划"><a href="#4-1、创建构建计划" class="headerlink" title="4.1、创建构建计划"></a>4.1、创建构建计划</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220401174450292.png" alt="image-20220401174450292"></p>
+<h5 id="4-2、选择类型"><a href="#4-2、选择类型" class="headerlink" title="4.2、选择类型"></a>4.2、选择类型</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220401174553368.png" alt="image-20220401174553368"></p>
+<h5 id="4-3、设置构建信息"><a href="#4-3、设置构建信息" class="headerlink" title="4.3、设置构建信息"></a>4.3、设置构建信息</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513124554966.png" alt="image-20220513124554966"></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513124648676.png" alt="image-20220513124648676"></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513124733749.png" alt="image-20220513124733749"></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513124759238.png" alt="image-20220513124759238"></p>
+<h5 id="4-4、修改流程配置"><a href="#4-4、修改流程配置" class="headerlink" title="4.4、修改流程配置"></a>4.4、修改流程配置</h5><p><strong>根据具体需要，自定义执行流程</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513124956741.png" alt="image-20220513124956741"></p>
+<h5 id="4-5、立即构建"><a href="#4-5、立即构建" class="headerlink" title="4.5、立即构建"></a>4.5、立即构建</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513125040809.png" alt="image-20220513125040809"></p>
+<h5 id="4-6、构建完成"><a href="#4-6、构建完成" class="headerlink" title="4.6、构建完成"></a>4.6、构建完成</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220513125309986.png" alt="image-20220513125309986"></p>
+<h4 id="5、持续部署（绑定云账号）"><a href="#5、持续部署（绑定云账号）" class="headerlink" title="5、持续部署（绑定云账号）"></a>5、持续部署（绑定云账号）</h4><h5 id="5-1、输入账号名称"><a href="#5-1、输入账号名称" class="headerlink" title="5.1、输入账号名称"></a>5.1、输入账号名称</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220520143328293.png" alt="image-20220520143328293"></p>
+<h5 id="5-2、创建集群，开放外网ip"><a href="#5-2、创建集群，开放外网ip" class="headerlink" title="5.2、创建集群，开放外网ip"></a>5.2、创建集群，开放外网ip</h5><p><strong>（1）创建集群</strong></p>
+<p><strong>在容器服务中创建集群</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220520143639634.png" alt="image-20220520143639634"></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220520143552908.png" alt="image-20220520143552908"></p>
+<p><strong>（2）开放外网</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220520143801945.png" alt="image-20220520143801945"></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220520143837916.png" alt="image-20220520143837916"></p>
+<h5 id="5-3、复制凭证"><a href="#5-3、复制凭证" class="headerlink" title="5.3、复制凭证"></a>5.3、复制凭证</h5><p><strong>（1）复制集群凭证</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220520143949031.png" alt="image-20220520143949031"></p>
+<p><strong>（2）复制到云账户</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220520144030721.png" alt="image-20220520144030721"></p>
+<h4 id="6、持续部署（Kubernetes）"><a href="#6、持续部署（Kubernetes）" class="headerlink" title="6、持续部署（Kubernetes）"></a>6、持续部署（Kubernetes）</h4><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220516110346105.png" alt="image-20220516110346105"></p>
+<h5 id="6-1、创建部署"><a href="#6-1、创建部署" class="headerlink" title="6.1、创建部署"></a>6.1、创建部署</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220516100859149.png" alt="image-20220516100859149"></p>
+<h5 id="6-2、集群配置"><a href="#6-2、集群配置" class="headerlink" title="6.2、集群配置"></a>6.2、集群配置</h5><h6 id="6-2-1、集群配置"><a href="#6-2-1、集群配置" class="headerlink" title="6.2.1、集群配置"></a>6.2.1、集群配置</h6><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220516101020739.png" alt="image-20220516101020739"></p>
+<h6 id="6-2-2、镜像配置"><a href="#6-2-2、镜像配置" class="headerlink" title="6.2.2、镜像配置"></a>6.2.2、镜像配置</h6><p><strong>1、选择示例镜像用于测试使用</strong></p>
+<p><strong>2、可以选择CODING Docker仓库里面自己创建的镜像</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220516110809166.png" alt="image-20220516110809166"></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220516110838104.png" alt="image-20220516110838104"></p>
+<h6 id="6-2-3、应用部署"><a href="#6-2-3、应用部署" class="headerlink" title="6.2.3、应用部署"></a>6.2.3、应用部署</h6><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220516110921117.png" alt="image-20220516110921117"></p>
+<h5 id="6-3、等待发布"><a href="#6-3、等待发布" class="headerlink" title="6.3、等待发布"></a>6.3、等待发布</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220516111007139.png" alt="image-20220516111007139"></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220516111034954.png" alt="image-20220516111034954"></p>
+<h5 id="6-4、获取发布地址"><a href="#6-4、获取发布地址" class="headerlink" title="6.4、获取发布地址"></a>6.4、获取发布地址</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220516111304563.png" alt="image-20220516111304563"></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220516111332649.png" alt="image-20220516111332649"></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220516111453491.png" alt="image-20220516111453491"></p>
+<h5 id="6-5、访问测试"><a href="#6-5、访问测试" class="headerlink" title="6.5、访问测试"></a>6.5、访问测试</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220516111716999.png" alt="image-20220516111716999"></p>
+<h4 id="7、持续部署（腾讯云弹性伸缩）"><a href="#7、持续部署（腾讯云弹性伸缩）" class="headerlink" title="7、持续部署（腾讯云弹性伸缩）"></a>7、持续部署（腾讯云弹性伸缩）</h4><h5 id="7-1、创建应用"><a href="#7-1、创建应用" class="headerlink" title="7.1、创建应用"></a>7.1、创建应用</h5><p><strong>（1）在部署控制台创建应用，选择腾讯云弹性伸缩</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220520144214591.png" alt="image-20220520144214591"></p>
+<h5 id="7-2、创建流程"><a href="#7-2、创建流程" class="headerlink" title="7.2、创建流程"></a>7.2、创建流程</h5><p><strong>（1）点击创建流程</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220520144331497.png" alt="image-20220520144331497"></p>
+<p><strong>（2）选择流程</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220520144426748.png" alt="image-20220520144426748"></p>
+<p><strong>（3）修改流程内容</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220520144509916.png" alt="image-20220520144509916"></p>
+<h5 id="7-3、启动执行"><a href="#7-3、启动执行" class="headerlink" title="7.3、启动执行"></a>7.3、启动执行</h5><p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220520144558085.png" alt="image-20220520144558085"></p>
+<h5 id="7-4、集群查看"><a href="#7-4、集群查看" class="headerlink" title="7.4、集群查看"></a>7.4、集群查看</h5><p><strong>（1）执行成功后，集群中查看</strong></p>
+<p><img src="/img/loading.gif" data-original="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/image-20220520144629401.png" alt="image-20220520144629401"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">HUA</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82-%E8%85%BE%E8%AE%AF%E4%BA%91%E9%83%A8%E7%BD%B2/">http://example.com/2023/09/24/硅谷课堂-腾讯云部署/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">阿华</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/page5.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/09/29/DeBug/"><img class="prev-cover" src="/img/loading.gif" data-original="/img/page5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info"></div></div></a></div><div class="next-post pull-right"><a href="/2023/09/24/%E7%A1%85%E8%B0%B7%E8%AF%BE%E5%A0%82/"><img class="next-cover" src="/img/loading.gif" data-original="/img/page6.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">硅谷课堂</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">HUA</div><div class="author-info__description">不要放弃</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/TINGTING-GIT" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="tencent://AddContact/?fromld=45&amp;fromSubld=1&amp;subcmd=all&amp;uin=2164277973&amp;website=www.oicqzone.com" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:2164277973@qq.com" target="_blank" title="Email"><i class="fas fa-envelope-open-text"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div><div class="xpand" style="height:200px;"><canvas class="illo" width="800" height="800" style="max-width: 200px; max-height: 200px; touch-action: none; width: 640px; height: 640px;"></canvas></div></div><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople1.js"></script><script src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/zdog.dist.js"></script><script id="rendered-js" src="https://fastly.jsdelivr.net/gh/xiaopengand/blogCdn@latest/xzxr/twopeople.js"></script><style>.card-widget.card-announcement {
+margin: 0;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+canvas {
+display: block;
+margin: 0 auto;
+cursor: move;
+}</style><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88"><span class="toc-number">1.</span> <span class="toc-text">一、项目部署方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%8E%9F%E5%A7%8B%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text">1、原始部署方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E6%95%B4%E5%90%88Jenkins"><span class="toc-number">1.2.</span> <span class="toc-text">2、整合Jenkins</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E6%95%B4%E5%90%88CODING"><span class="toc-number">1.3.</span> <span class="toc-text">3、整合CODING</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%85%BE%E8%AE%AF%E4%BA%91CODING-DevOps%E6%A6%82%E8%BF%B0"><span class="toc-number">2.</span> <span class="toc-text">二、腾讯云CODING DevOps概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E4%BA%A7%E5%93%81%E7%AE%80%E4%BB%8B"><span class="toc-number">2.1.</span> <span class="toc-text">1、产品简介</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1%E3%80%81CODING-DevOps-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.1、CODING DevOps 是什么</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2%E3%80%81CODING-DevOps-%E4%BC%98%E5%8A%BF"><span class="toc-number">2.1.2.</span> <span class="toc-text">1.2、CODING DevOps 优势</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3%E3%80%81CODING-DevOps-%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7"><span class="toc-number">2.1.3.</span> <span class="toc-text">1.3、CODING DevOps 功能特性</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B%E6%A6%82%E8%BF%B0"><span class="toc-number">2.2.</span> <span class="toc-text">2、使用流程概述</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-%E5%88%9B%E5%BB%BA%E6%88%96%E5%8A%A0%E5%85%A5%E5%9B%A2%E9%98%9F"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.1. 创建或加入团队</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2. 新建项目</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-%E5%BC%80%E5%A7%8B%E9%A1%B9%E7%9B%AE%E5%8D%8F%E5%90%8C"><span class="toc-number">2.2.3.</span> <span class="toc-text">2.3. 开始项目协同</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4-%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93"><span class="toc-number">2.2.4.</span> <span class="toc-text">2.4. 使用代码仓库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-5-%E5%90%AF%E5%8A%A8%E4%BB%A3%E7%A0%81%E6%89%AB%E6%8F%8F"><span class="toc-number">2.2.5.</span> <span class="toc-text">2.5. 启动代码扫描</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-6-%E7%BC%96%E8%AF%91%E6%9E%84%E5%BB%BA"><span class="toc-number">2.2.6.</span> <span class="toc-text">2.6. 编译构建</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-7-%E7%AE%A1%E7%90%86%E5%88%B6%E5%93%81"><span class="toc-number">2.2.7.</span> <span class="toc-text">2.7. 管理制品</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-8-%E5%AE%9E%E6%96%BD%E6%8C%81%E7%BB%AD%E9%83%A8%E7%BD%B2"><span class="toc-number">2.2.8.</span> <span class="toc-text">2.8. 实施持续部署</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-9-%E7%AE%A1%E7%90%86%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B"><span class="toc-number">2.2.9.</span> <span class="toc-text">2.9. 管理测试用例</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-10-%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3"><span class="toc-number">2.2.10.</span> <span class="toc-text">2.10. 管理项目文档</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%BC%80%E9%80%9ACODING-DevOps"><span class="toc-number">3.</span> <span class="toc-text">三、开通CODING DevOps</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%90%9C%E7%B4%A2CODING-DevOps"><span class="toc-number">3.1.</span> <span class="toc-text">1、搜索CODING DevOps</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%BC%80%E9%80%9A%E8%B4%A6%E5%8F%B7"><span class="toc-number">3.2.</span> <span class="toc-text">2、开通账号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%88%9B%E5%BB%BA%E5%9B%A2%E9%98%9F"><span class="toc-number">3.3.</span> <span class="toc-text">3、创建团队</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8CODING-DevOps"><span class="toc-number">4.</span> <span class="toc-text">四、使用CODING DevOps</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.1.</span> <span class="toc-text">1、创建项目</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1%E3%80%81%E7%82%B9%E5%87%BB%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.1.1.</span> <span class="toc-text">1.1、点击创建项目</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2%E3%80%81%E9%80%89%E6%8B%A9%E9%A1%B9%E7%9B%AE%E6%A8%A1%E6%9D%BF"><span class="toc-number">4.1.2.</span> <span class="toc-text">1.2、选择项目模板</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3%E3%80%81%E5%A1%AB%E5%86%99%E9%A1%B9%E7%9B%AE%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">4.1.3.</span> <span class="toc-text">1.3、填写项目基本信息</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-4%E3%80%81%E5%AE%8C%E6%88%90%E5%88%9B%E5%BB%BA"><span class="toc-number">4.1.4.</span> <span class="toc-text">1.4、完成创建</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%A1%B9%E7%9B%AE%E5%8D%8F%E5%90%8C"><span class="toc-number">4.2.</span> <span class="toc-text">2、项目协同</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1%E3%80%81%E9%A1%B9%E7%9B%AE%E5%8D%8F%E5%90%8C%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">4.2.1.</span> <span class="toc-text">2.1、项目协同初始化</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2%E3%80%81%E9%A1%B9%E7%9B%AE%E5%8D%8F%E5%90%8C%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.2.2.</span> <span class="toc-text">2.2、项目协同具体实现</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93"><span class="toc-number">4.3.</span> <span class="toc-text">3、代码仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1%E3%80%81%E6%B7%BB%E5%8A%A0%E4%BB%93%E5%BA%93"><span class="toc-number">4.3.1.</span> <span class="toc-text">3.1、添加仓库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2%E3%80%81%E5%85%8B%E9%9A%86%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93%E5%88%B0%E6%9C%AC%E5%9C%B0"><span class="toc-number">4.3.2.</span> <span class="toc-text">3.2、克隆代码仓库到本地</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-3%E3%80%81%E6%8E%A8%E9%80%81%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E8%87%B3CODING%E4%BB%93%E5%BA%93"><span class="toc-number">4.3.3.</span> <span class="toc-text">3.3、推送本地代码至CODING仓库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-4%E3%80%81%E6%8E%A8%E9%80%81%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93"><span class="toc-number">4.3.4.</span> <span class="toc-text">3.4、推送项目到代码仓库</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90"><span class="toc-number">4.4.</span> <span class="toc-text">4、持续集成</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1%E3%80%81%E5%88%9B%E5%BB%BA%E6%9E%84%E5%BB%BA%E8%AE%A1%E5%88%92"><span class="toc-number">4.4.1.</span> <span class="toc-text">4.1、创建构建计划</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2%E3%80%81%E9%80%89%E6%8B%A9%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.4.2.</span> <span class="toc-text">4.2、选择类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3%E3%80%81%E8%AE%BE%E7%BD%AE%E6%9E%84%E5%BB%BA%E4%BF%A1%E6%81%AF"><span class="toc-number">4.4.3.</span> <span class="toc-text">4.3、设置构建信息</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-4%E3%80%81%E4%BF%AE%E6%94%B9%E6%B5%81%E7%A8%8B%E9%85%8D%E7%BD%AE"><span class="toc-number">4.4.4.</span> <span class="toc-text">4.4、修改流程配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-5%E3%80%81%E7%AB%8B%E5%8D%B3%E6%9E%84%E5%BB%BA"><span class="toc-number">4.4.5.</span> <span class="toc-text">4.5、立即构建</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-6%E3%80%81%E6%9E%84%E5%BB%BA%E5%AE%8C%E6%88%90"><span class="toc-number">4.4.6.</span> <span class="toc-text">4.6、构建完成</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E6%8C%81%E7%BB%AD%E9%83%A8%E7%BD%B2%EF%BC%88%E7%BB%91%E5%AE%9A%E4%BA%91%E8%B4%A6%E5%8F%B7%EF%BC%89"><span class="toc-number">4.5.</span> <span class="toc-text">5、持续部署（绑定云账号）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-1%E3%80%81%E8%BE%93%E5%85%A5%E8%B4%A6%E5%8F%B7%E5%90%8D%E7%A7%B0"><span class="toc-number">4.5.1.</span> <span class="toc-text">5.1、输入账号名称</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-2%E3%80%81%E5%88%9B%E5%BB%BA%E9%9B%86%E7%BE%A4%EF%BC%8C%E5%BC%80%E6%94%BE%E5%A4%96%E7%BD%91ip"><span class="toc-number">4.5.2.</span> <span class="toc-text">5.2、创建集群，开放外网ip</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-3%E3%80%81%E5%A4%8D%E5%88%B6%E5%87%AD%E8%AF%81"><span class="toc-number">4.5.3.</span> <span class="toc-text">5.3、复制凭证</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81%E6%8C%81%E7%BB%AD%E9%83%A8%E7%BD%B2%EF%BC%88Kubernetes%EF%BC%89"><span class="toc-number">4.6.</span> <span class="toc-text">6、持续部署（Kubernetes）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#6-1%E3%80%81%E5%88%9B%E5%BB%BA%E9%83%A8%E7%BD%B2"><span class="toc-number">4.6.1.</span> <span class="toc-text">6.1、创建部署</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-2%E3%80%81%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE"><span class="toc-number">4.6.2.</span> <span class="toc-text">6.2、集群配置</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#6-2-1%E3%80%81%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE"><span class="toc-number">4.6.2.1.</span> <span class="toc-text">6.2.1、集群配置</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#6-2-2%E3%80%81%E9%95%9C%E5%83%8F%E9%85%8D%E7%BD%AE"><span class="toc-number">4.6.2.2.</span> <span class="toc-text">6.2.2、镜像配置</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#6-2-3%E3%80%81%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2"><span class="toc-number">4.6.2.3.</span> <span class="toc-text">6.2.3、应用部署</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-3%E3%80%81%E7%AD%89%E5%BE%85%E5%8F%91%E5%B8%83"><span class="toc-number">4.6.3.</span> <span class="toc-text">6.3、等待发布</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-4%E3%80%81%E8%8E%B7%E5%8F%96%E5%8F%91%E5%B8%83%E5%9C%B0%E5%9D%80"><span class="toc-number">4.6.4.</span> <span class="toc-text">6.4、获取发布地址</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-5%E3%80%81%E8%AE%BF%E9%97%AE%E6%B5%8B%E8%AF%95"><span class="toc-number">4.6.5.</span> <span class="toc-text">6.5、访问测试</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7%E3%80%81%E6%8C%81%E7%BB%AD%E9%83%A8%E7%BD%B2%EF%BC%88%E8%85%BE%E8%AE%AF%E4%BA%91%E5%BC%B9%E6%80%A7%E4%BC%B8%E7%BC%A9%EF%BC%89"><span class="toc-number">4.7.</span> <span class="toc-text">7、持续部署（腾讯云弹性伸缩）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#7-1%E3%80%81%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8"><span class="toc-number">4.7.1.</span> <span class="toc-text">7.1、创建应用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-2%E3%80%81%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B"><span class="toc-number">4.7.2.</span> <span class="toc-text">7.2、创建流程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-3%E3%80%81%E5%90%AF%E5%8A%A8%E6%89%A7%E8%A1%8C"><span class="toc-number">4.7.3.</span> <span class="toc-text">7.3、启动执行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-4%E3%80%81%E9%9B%86%E7%BE%A4%E6%9F%A5%E7%9C%8B"><span class="toc-number">4.7.4.</span> <span class="toc-text">7.4、集群查看</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/10/07/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" title="无题"><img src="/img/loading.gif" data-original="/img/page2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2023/10/07/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/" title="无题">无题</a><time datetime="2023-10-07T15:09:36.518Z" title="发表于 2023-10-07 23:09:36">2023-10-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/06/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="JUC并发编程"><img src="/img/loading.gif" data-original="/img/page4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JUC并发编程"/></a><div class="content"><a class="title" href="/2023/10/06/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="JUC并发编程">JUC并发编程</a><time datetime="2023-10-06T06:55:28.000Z" title="发表于 2023-10-06 14:55:28">2023-10-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/04/PandaSearch/" title="无题"><img src="/img/loading.gif" data-original="/img/page5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2023/10/04/PandaSearch/" title="无题">无题</a><time datetime="2023-10-04T04:59:36.140Z" title="发表于 2023-10-04 12:59:36">2023-10-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/01/Elasticsearch/" title="无题"><img src="/img/loading.gif" data-original="/img/page5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2023/10/01/Elasticsearch/" title="无题">无题</a><time datetime="2023-10-01T01:50:57.541Z" title="发表于 2023-10-01 09:50:57">2023-10-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/09/29/DeBug/" title="无题"><img src="/img/loading.gif" data-original="/img/page5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2023/09/29/DeBug/" title="无题">无题</a><time datetime="2023-09-29T02:59:28.368Z" title="发表于 2023-09-29 10:59:28">2023-09-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By HUA</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script async src="https://npm.elemecdn.com/tzy-blog/lib/js/other/sakura.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="/img/loading.gif" data-original="https://fastly.jsdelivr.net/gh/tzy13755126023/BLOG_SOURCE/theme_f/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_injector_config();
+  }
+  </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax src="https://unpkg.zhimg.com/hexo-butterfly-clock/lib/clock.min.js"></script><!-- hexo injector body_end end -->
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(e){e.imageLazyLoadSetting.processImages=t;var n=e.imageLazyLoadSetting.isSPA,i=e.imageLazyLoadSetting.preloadRatio||1,r=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){n&&(r=o());for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(e.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];e=function(){r=r.filter(function(t){return o!==t})},(t=o).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,t.removeAttribute("data-original"),e&&e()},t.src!==i&&(n.src=i))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),e.addEventListener("resize",a),e.addEventListener("orientationchange",a)}(this);</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":20,"vOffset":-20},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>
